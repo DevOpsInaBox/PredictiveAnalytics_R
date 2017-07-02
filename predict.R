@@ -1,4 +1,3 @@
-setwd("E:\\Confidential\\Case Studies\\Predictive Analytics\\POC on ML for QA\\ResultsV_2")
 options( warn = -1 )
 
 temp = list.files(pattern="release.*")
