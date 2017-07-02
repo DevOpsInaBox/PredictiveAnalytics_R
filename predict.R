@@ -5,7 +5,7 @@ for (i in 1:length(temp))
 {
   assign(paste0("release",i), read.csv(temp[i]))
 }
-
+length(temp)
 par(mfrow=c(2,2))
 
 for(i in 1:30)
@@ -45,6 +45,7 @@ output_model_testHrs<-lm(Tot_Test_Hrs ~ NumActive+NumReopened+NumDaysActive+Tot_
 output_model_svr_high_model<-lm(Num_Sev_High ~ NumActive+NumReopened+NumDaysActive+Tot_LOC,data = output_dataset)
 output_model_svr_medium_model<-lm(Num_Sev_Med ~ NumActive+NumReopened+NumDaysActive+Tot_LOC,data = output_dataset)
 output_model_svr_low_model<-lm(Num_Sev_Low ~ NumActive+NumReopened+NumDaysActive+Tot_LOC,data = output_dataset)
+
 
 input = readline('Press Enter to view Total Number of days Prediction for future release based on input Features')
 summary(output_model_TotDays)
