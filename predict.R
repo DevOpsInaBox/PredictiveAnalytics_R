@@ -12,7 +12,7 @@ for(i in 1:30)
 {
   release<-get(paste0("release",i))
   input = readline(paste('Press Enter to view "Number of Times Active" Plot for release',i))
-  plot(release$numActive,release$Total.num.days,main=paste0("Total Num of Days  Vs.  Number of times Active\n Release",i))
+  plot(release$numActive,release$Total.num.days,main=paste0("Total Num of Days Vs. Number of times Active\n Release",i))
   plot(release$numDaysActive,release$Total.num.days,main=paste0("Total Num of Days  Vs.  Number of days Active\n Release",i))
   plot(release$numReopened,release$Total.num.days,main=paste0("Total Num of Days  Vs.  Number of times Reopened\n Release",i))
   plot(release$LOC,release$Total.num.days,main=paste0("Total Num of Days  Vs. Lines of Code\n Release",i))
@@ -46,17 +46,17 @@ output_model_svr_medium_model<-lm(Num_Sev_Med ~ NumActive+NumReopened+NumDaysAct
 output_model_svr_low_model<-lm(Num_Sev_Low ~ NumActive+NumReopened+NumDaysActive+Tot_LOC,data = output_dataset)
 
 
-input = readline('Press Enter to view Total Number of days Prediction for future release based on input Features')
+input = readline('***********************Total Number of days Prediction for future release based on input Features************************')
 summary(output_model_TotDays)
-input = readline('Press Enter to view Total Eff Dev Hours Prediction for future release based on input Features')
+input = readline('***********************Total Eff Dev Hours Prediction for future release based on input Features*************************')
 summary(output_model_DevHrs)
-input = readline('Press Enter to view Total Eff Testing Hours Prediction for future release based on input Features')
+input = readline('***********************Total Eff Testing Hours Prediction for future release based on input Features***********************')
 summary(output_model_testHrs)
-input = readline('Press Enter to view Total Number of High Severity Defects Prediction for future release based on input Features')
+input = readline('***********************Total Number of High Severity Defects Prediction for future release based on input Features***********************')
 summary(output_model_svr_high_model)
-input = readline('Press Enter to view Total Number of Medium Severity Defects Prediction for future release based on input Features')
+input = readline('***********************Total Number of Medium Severity Defects Prediction for future release based on input Features***********************')
 summary(output_model_svr_medium_model)
-input = readline('Press Enter to view Total Number of Low Severity Defects Prediction for future release based on input Features')
+input = readline('***********************Total Number of Low Severity Defects Prediction for future release based on input Features***********************')
 summary(output_model_svr_low_model)
 
 
