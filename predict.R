@@ -28,7 +28,6 @@ for(i in 1:30)
   plot(release$LOC,release$Num.eff.testing.hours,main=paste0("Eff. Testing Hours  Vs.  Lines of Code\n Release",i))
 }
 
-graphics.off()
 #Shrinking the 30 releases
 output_dataset<-data.frame(Rel_Num=double(),Tot_Days=double(),Num_Reop=integer(),Num_Active=integer(),Tot_LOC=integer(),Tot_Dev_Hrs=double(),Tot_Test_Hrs=double(),Num_Sev_High=integer(),Num_Sev_Med=integer(),Num_Sev_Low=integer());
 for (i in 1:30)
