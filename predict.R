@@ -7,7 +7,7 @@ for (i in 1:length(temp))
   assign(paste0("release",i), read.csv(temp[i]))
 }
 
-par(mfrow=c(2,2),cex.lab=0.7,cex.main=0.8,cex.axis=1)
+par(mfrow=c(2,2),cex.lab=0.8,cex.main=0.8)
 
 for(i in 1:30)
 {
