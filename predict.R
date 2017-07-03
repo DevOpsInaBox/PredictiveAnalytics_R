@@ -29,7 +29,7 @@ for(i in 1:30)
   plot(release$numDaysActive,release$Num.eff.testing.hours,main=paste0("Eff. Testing Hours  Vs.  Number of days Active\n Release",i),xlab='Number of days Active',ylab='Eff. Testing Hours')
   plot(release$numReopened,release$Num.eff.testing.hours,main=paste0("Eff. Testing Hours  Vs.  Number of times Reopened\n Release",i),xlab='Number of times Reopened',ylab='Eff. Testing Hours')
   plot(release$LOC,release$Num.eff.testing.hours,main=paste0("Eff. Testing Hours  Vs.  Lines of Code\n Release",i),xlab='Lines of Code',ylab='Eff. Testing Hours')
-  mtext(paste("Plot for 'Test Hours' in release",i), side = 3, line = -22 outer=TRUE)
+  mtext(paste("Plot for 'Test Hours' in release",i), side = 3, line = -22, outer=TRUE)
 }
 
 #Shrinking the 30 releases
