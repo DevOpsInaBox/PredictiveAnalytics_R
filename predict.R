@@ -55,7 +55,7 @@ output_model_svr_low_model<-lm(Num_Sev_Low ~ NumActive+NumReopened+NumDaysActive
 output_model_priot_high_model<-lm(Num_Priot_High ~ NumActive+NumReopened+NumDaysActive+Tot_LOC,data = output_dataset)
 output_model_priot_medium_model<-lm(Num_Priot_Med ~ NumActive+NumReopened+NumDaysActive+Tot_LOC,data = output_dataset)
 output_model_priot_low_model<-lm(Num_Priot_Low ~ NumActive+NumReopened+NumDaysActive+Tot_LOC,data = output_dataset)
-summary(output_model_TotDays)
+
 # Shrinked file graph using ggplot
 input = readline('Press Enter to view "Total Number of Days" Trend analysis among all the releases')
 a<-ggplot(data=output_dataset,aes(x=NumActive,y=Tot_Days)) + geom_point(color='darkblue')+xlab('Number of times Active')+ylab('Total Num of Days')+ggtitle("Total Num of Days  Vs.  Number of times Active")
