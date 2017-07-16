@@ -1,3 +1,4 @@
+library(ggplot)
 temp = list.files(pattern="release.*")
 for (i in 1:length(temp))
 {
