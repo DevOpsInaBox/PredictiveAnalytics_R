@@ -1,5 +1,5 @@
-install.packages("ggplot",repos = "http://cran.us.r-project.org")
-library(ggplot)
+install.packages("ggplot2")
+library(ggplot2)
 temp = list.files(pattern="release.*")
 for (i in 1:length(temp))
 {
