@@ -1,5 +1,6 @@
 #install.packages("ggplot2",repos = "http://cran.us.r-project.org")
 #install.packages("gridExtra",repos = "http://cran.us.r-project.org")
+setwd("E:\\Confidential\\Case Studies\\Predictive Analytics\\POC on ML for QA\\ML_v2\\Defects_Modi")
 options( warn = -1 )
 library(ggplot2)
 library(gridExtra)
@@ -12,13 +13,13 @@ for (i in 1:length(temp))
 }
 
 #Shrinking the 30 releases
-output_dataset<-data.frame(Rel_Num=double(),Num_Active=integer(),Num_Days_Active=integer(),Num_Reop=integer(),Tot_LOC=integer(),Tot_Days=double(),Tot_Dev_Hrs=double(),Tot_Test_Hrs=double(),Num_Sev_High=integer(),Num_Sev_Med=integer(),Num_Sev_Low=integer());
+output_dataset<-data.frame(Num_Active=integer(),Num_Days_Active=integer(),Num_Reop=integer(),Tot_LOC=integer(),Tot_Days=double(),Tot_Dev_Hrs=double(),Tot_Test_Hrs=double(),Num_Sev_High=integer(),Num_Sev_Med=integer(),Num_Sev_Low=integer());
 for (i in 1:30)
 {
   release<-get(paste0("release",i))
-  x<-data.frame(sum(release$numDaysActive),sum(release$numActive),sum(release$numReopened),sum(release$LOC),sum(release$Total.num.days),sum(release$Num.eff.dev.hours),sum(release$Num.eff.testing.hours),nrow(release[release$Severity=='High',]),nrow(release[release$Severity=='Medium',]),nrow(release[release$Severity=='Low',]),nrow(release[release$Priority=='High',]),nrow(release[release$Priority=='Medium',]),nrow(release[release$Priority=='Low',]))
-  x<-cbind("Release_num"=i,x)
-  names(x)<-c("Release_num","NumActive","NumDaysActive","NumReopened","Tot_LOC","Tot_Days","Tot_Dev_Hrs","Tot_Test_Hrs","Num_Sev_High","Num_Sev_Med","Num_Sev_Low","Num_Priot_High","Num_Priot_Med","Num_Priot_Low")
+  x<-data.frame(i,sum(release$numActive),sum(release$numDaysActive),sum(release$numReopened),sum(release$LOC),sum(release$Total.num.days),sum(release$Num.eff.dev.hours),sum(release$Num.eff.testing.hours),nrow(release[release$Severity=='High',]),nrow(release[release$Severity=='Medium',]),nrow(release[release$Severity=='Low',]),nrow(release[release$Priority=='High',]),nrow(release[release$Priority=='Medium',]),nrow(release[release$Priority=='Low',]))
+  #x<-cbind("Rel_num"=i,x)
+  names(x)<-c("Rel_num","NumActive","NumDaysActive","NumReopened","Tot_LOC","Tot_Days","Tot_Dev_Hrs","Tot_Test_Hrs","Num_Sev_High","Num_Sev_Med","Num_Sev_Low","Num_Priot_High","Num_Priot_Med","Num_Priot_Low")
   output_dataset<-rbind(output_dataset,x)
 }
 
@@ -32,21 +33,21 @@ output_model_priot_high_model<-lm(Num_Priot_High ~ NumActive+NumReopened+NumDays
 output_model_priot_medium_model<-lm(Num_Priot_Med ~ NumActive+NumReopened+NumDaysActive+Tot_LOC,data = output_dataset)
 output_model_priot_low_model<-lm(Num_Priot_Low ~ NumActive+NumReopened+NumDaysActive+Tot_LOC,data = output_dataset)
 
-input_data<-data.frame(NumActive=args[1],NumReopened=args[4],NumDaysActive=args[2],Tot_LOC=args[3]);
-predicted_totDays<-predict(output_model_TotDays,data=input_data);
-predicted_DevHrs<-predict(output_model_DevHrs,data=input_data);
-predicted_testHrs<-predict(output_model_testHrs,data=input_data);
-predicted_svr_high<-predict(output_model_svr_high_model,data=input_data);
-predicted_svr_medium<-predict(output_model_svr_medium_model,data=input_data);
-predicted_svr_low<-predict(output_model_svr_low_model,data=input_data);
-predicted_priot_high<-predict(output_model_priot_high_model,data=input_data);
-predicted_priot_medium<-predict(output_model_priot_medium_model,data=input_data);
-predicted_priot_low<-predict(output_model_priot_low_model,data=input_data);
+input_data<-data.frame(NumActive=as.integer(args[1]),NumReopened=as.integer(args[4]),NumDaysActive=as.integer(args[2]),Tot_LOC=as.integer(args[3]));
+predicted_totDays<-predict(output_model_TotDays,input_data);
+predicted_DevHrs<-predict(output_model_DevHrs,input_data);
+predicted_testHrs<-predict(output_model_testHrs,input_data);
+predicted_svr_high<-predict(output_model_svr_high_model,input_data);
+predicted_svr_medium<-predict(output_model_svr_medium_model,input_data);
+predicted_svr_low<-predict(output_model_svr_low_model,input_data);
+predicted_priot_high<-predict(output_model_priot_high_model,input_data);
+predicted_priot_medium<-predict(output_model_priot_medium_model,input_data);
+predicted_priot_low<-predict(output_model_priot_low_model,input_data);
 
-print(paste0("Total Number of QA days for the next release is predicted to be : ",predicted_totDays,"\n"));
-print(paste0("Total Number of Dev Hours required for the next release is predicted to be : ",predicted_DevHrs,"\n"));
-print(paste0("Total Number of Test Hours required for the next release is predicted to be : ",predicted_testHrs,"\n"));
-print(paste0("Total Number of High Severity Defects for the next release is predicted to be : ",predicted_svr_high,"\n"));
-print(paste0("Total Number of Low Severity Defects for the next release is predicted to be : ",predicted_svr_low,"\n"));
-print(paste0("Total Number of High Priority Defects for the next release is predicted to be : ",predicted_priot_high,"\n"));
-print(paste0("Total Number of Low Priority Defects for the next release is predicted to be : ",predicted_priot_low,"\n"));
+print(paste0("Total Number of QA days for the next release is predicted to be : ",predicted_totDays));
+print(paste0("Total Number of Dev Hours required for the next release is predicted to be : ",predicted_DevHrs));
+print(paste0("Total Number of Test Hours required for the next release is predicted to be : ",predicted_testHrs));
+print(paste0("Total Number of High Severity Defects for the next release is predicted to be : ",predicted_svr_high));
+print(paste0("Total Number of Low Severity Defects for the next release is predicted to be : ",predicted_svr_low));
+print(paste0("Total Number of High Priority Defects for the next release is predicted to be : ",predicted_priot_high));
+print(paste0("Total Number of Low Priority Defects for the next release is predicted to be : ",predicted_priot_low));

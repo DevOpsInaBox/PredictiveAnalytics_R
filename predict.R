@@ -40,9 +40,9 @@ output_dataset<-data.frame(Rel_Num=double(),Num_Active=integer(),Num_Days_Active
 for (i in 1:30)
 {
   release<-get(paste0("release",i))
-  x<-data.frame(sum(release$numDaysActive),sum(release$numActive),sum(release$numReopened),sum(release$LOC),sum(release$Total.num.days),sum(release$Num.eff.dev.hours),sum(release$Num.eff.testing.hours),nrow(release[release$Severity=='High',]),nrow(release[release$Severity=='Medium',]),nrow(release[release$Severity=='Low',]),nrow(release[release$Priority=='High',]),nrow(release[release$Priority=='Medium',]),nrow(release[release$Priority=='Low',]))
-  x<-cbind("Release_num"=i,x)
-  names(x)<-c("Release_num","NumActive","NumDaysActive","NumReopened","Tot_LOC","Tot_Days","Tot_Dev_Hrs","Tot_Test_Hrs","Num_Sev_High","Num_Sev_Med","Num_Sev_Low","Num_Priot_High","Num_Priot_Med","Num_Priot_Low")
+  x<-data.frame(i,sum(release$numActive),sum(release$numDaysActive),sum(release$numReopened),sum(release$LOC),sum(release$Total.num.days),sum(release$Num.eff.dev.hours),sum(release$Num.eff.testing.hours),nrow(release[release$Severity=='High',]),nrow(release[release$Severity=='Medium',]),nrow(release[release$Severity=='Low',]),nrow(release[release$Priority=='High',]),nrow(release[release$Priority=='Medium',]),nrow(release[release$Priority=='Low',]))
+  #x<-cbind("Rel_Num"=i,x)
+  names(x)<-c("Rel_num","NumActive","NumDaysActive","NumReopened","Tot_LOC","Tot_Days","Tot_Dev_Hrs","Tot_Test_Hrs","Num_Sev_High","Num_Sev_Med","Num_Sev_Low","Num_Priot_High","Num_Priot_Med","Num_Priot_Low")
   output_dataset<-rbind(output_dataset,x)
 }
 
