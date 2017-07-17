@@ -33,7 +33,7 @@ output_model_priot_high_model<-lm(Num_Priot_High ~ NumActive+NumReopened+NumDays
 output_model_priot_medium_model<-lm(Num_Priot_Med ~ NumActive+NumReopened+NumDaysActive+Tot_LOC,data = output_dataset)
 output_model_priot_low_model<-lm(Num_Priot_Low ~ NumActive+NumReopened+NumDaysActive+Tot_LOC,data = output_dataset)
 
-input_data<-data.frame(NumActive=args[1],NumReopened=args[4],NumDaysActive=args[2],Tot_LOC=args[3]);
+input_data<-data.frame(NumActive=as.integer(args[1]),NumReopened=as.integer(args[4]),NumDaysActive=as.integer(args[2]),Tot_LOC=as.integer(args[3]));
 predicted_totDays<-predict(output_model_TotDays,input_data);
 predicted_DevHrs<-predict(output_model_DevHrs,input_data);
 predicted_testHrs<-predict(output_model_testHrs,input_data);
