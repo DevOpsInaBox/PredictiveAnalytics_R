@@ -44,10 +44,10 @@ predicted_priot_high<-predict(output_model_priot_high_model,input_data);
 predicted_priot_medium<-predict(output_model_priot_medium_model,input_data);
 predicted_priot_low<-predict(output_model_priot_low_model,input_data);
 
-print(paste0("Total Number of QA days for the next release is predicted to be : ",predicted_totDays));
-print(paste0("Total Number of Dev Hours required for the next release is predicted to be : ",predicted_DevHrs));
-print(paste0("Total Number of Test Hours required for the next release is predicted to be : ",predicted_testHrs));
-print(paste0("Total Number of High Severity Defects for the next release is predicted to be : ",predicted_svr_high));
-print(paste0("Total Number of Low Severity Defects for the next release is predicted to be : ",predicted_svr_low));
-print(paste0("Total Number of High Priority Defects for the next release is predicted to be : ",predicted_priot_high));
-print(paste0("Total Number of Low Priority Defects for the next release is predicted to be : ",predicted_priot_low));
+print(paste0("Total Number of QA days for the next release is predicted to be : ",ceiling(predicted_totDays)));
+print(paste0("Total Number of Dev Hours required for the next release is predicted to be : ",ceiling(predicted_DevHrs)));
+print(paste0("Total Number of Test Hours required for the next release is predicted to be : ",ceiling(predicted_testHrs)));
+print(paste0("Total Number of High Severity Defects for the next release is predicted to be : ",ceiling(predicted_svr_high)));
+print(paste0("Total Number of Low Severity Defects for the next release is predicted to be : ",ceiling(predicted_svr_low)));
+print(paste0("Total Number of High Priority Defects for the next release is predicted to be : ",ceiling(predicted_priot_high)));
+print(paste0("Total Number of Low Priority Defects for the next release is predicted to be : ",ceiling(predicted_priot_low)));
