@@ -47,8 +47,6 @@ print(paste0("Total Number of QA days for the next release is predicted to be : 
 print(paste0("Total Number of Dev Hours required for the next release is predicted to be : ",predicted_DevHrs));
 print(paste0("Total Number of Test Hours required for the next release is predicted to be : ",predicted_testHrs));
 print(paste0("Total Number of High Severity Defects for the next release is predicted to be : ",predicted_svr_high));
-print(paste0("Total Number of Medium Severity Defects for the next release is predicted to be : ",predicted_svr_medium));
 print(paste0("Total Number of Low Severity Defects for the next release is predicted to be : ",predicted_svr_low));
 print(paste0("Total Number of High Priority Defects for the next release is predicted to be : ",predicted_priot_high));
-print(paste0("Total Number of Medium Priority Defects for the next release is predicted to be : ",predicted_priot_medium));
 print(paste0("Total Number of Low Priority Defects for the next release is predicted to be : ",predicted_priot_low));
