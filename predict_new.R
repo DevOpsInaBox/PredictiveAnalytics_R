@@ -36,7 +36,8 @@ output_model_priot_low_model<-lm(Num_Priot_Low ~ NumActive+NumReopened+NumDaysAc
 for(i in 1:5){
   args[i]<-as.integer(args[i])
   }
-
+args[1]*args[5]
+args[4]*args[5]
 input_data<-data.frame(NumActive=(args[1]*args[5]),NumReopened=(args[4]*args[5]),NumDaysActive=(args[2]*args[5]),Tot_LOC=(args[3]*args[5]));
 predicted_totDays<-predict(output_model_TotDays,input_data);
 predicted_DevHrs<-predict(output_model_DevHrs,input_data);
