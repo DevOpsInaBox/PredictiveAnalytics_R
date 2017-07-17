@@ -1,6 +1,6 @@
 #install.packages("ggplot2",repos = "http://cran.us.r-project.org")
 #install.packages("gridExtra",repos = "http://cran.us.r-project.org")
-setwd("E:\\Confidential\\Case Studies\\Predictive Analytics\\POC on ML for QA\\ML_v2\\Defects_Modi")
+setwd("/var/lib/jenkins/workspace/Predictive_Analytics_R/")
 options( warn = -1 )
 library(ggplot2)
 library(gridExtra)
