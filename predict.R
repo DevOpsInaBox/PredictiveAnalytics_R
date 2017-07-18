@@ -37,6 +37,7 @@ for(i in 1:30)
 }
 #Shrinking the 30 releases
 output_dataset<-data.frame(Rel_Num=double(),Num_Active=integer(),Num_Days_Active=integer(),Num_Reop=integer(),Tot_LOC=integer(),Tot_Days=double(),Tot_Dev_Hrs=double(),Tot_Test_Hrs=double(),Num_Sev_High=integer(),Num_Sev_Med=integer(),Num_Sev_Low=integer());
+avg_output<-data.frame(Rel_Num=double(),NumDefects=integer(),AvgNumActive=integer(),AvgNumDaysActive=integer(),AvgNumReopened=integer(),AvgTot_LOC=integer(),Tot_Days=double(),Tot_Dev_Hrs=double(),Tot_Test_Hrs=double(),Num_Sev_High=integer(),Num_Sev_Med=integer(),Num_Sev_Low=integer());
 for (i in 1:30)
 {
   release<-get(paste0("release",i))
@@ -44,8 +45,15 @@ for (i in 1:30)
   #x<-cbind("Rel_Num"=i,x)
   names(x)<-c("Rel_num","NumActive","NumDaysActive","NumReopened","Tot_LOC","Tot_Days","Tot_Dev_Hrs","Tot_Test_Hrs","Num_Sev_High","Num_Sev_Med","Num_Sev_Low","Num_Priot_High","Num_Priot_Med","Num_Priot_Low")
   output_dataset<-rbind(output_dataset,x)
+  
+  y<-data.frame(i,nrow(release),sum(release$numActive)/nrow(release),sum(release$numDaysActive)/nrow(release),sum(release$numReopened)/nrow(release),sum(release$LOC)/nrow(release),sum(release$Total.num.days),sum(release$Num.eff.dev.hours),sum(release$Num.eff.testing.hours),nrow(release[release$Severity=='High',]),nrow(release[release$Severity=='Medium',]),nrow(release[release$Severity=='Low',]),nrow(release[release$Priority=='High',]),nrow(release[release$Priority=='Medium',]),nrow(release[release$Priority=='Low',]))
+  names(y)<-c("Rel_num","NumDefects","AvgNumActive","AvgNumDaysActive","AvgNumReopened","AvgTot_LOC","Tot_Days","Tot_Dev_Hrs","Tot_Test_Hrs","Num_Sev_High","Num_Sev_Med","Num_Sev_Low","Num_Priot_High","Num_Priot_Med","Num_Priot_Low")
+  avg_output<-rbind(avg_output,y)
 }
 
+input = readline('*************************************Summary of individual releases******************************************')
+avg_output
+input = readline('*************************************************************************************************************')
 output_model_TotDays<-lm(Tot_Days ~ NumActive+NumReopened+NumDaysActive+Tot_LOC,data = output_dataset)
 output_model_DevHrs<-lm(Tot_Dev_Hrs ~ NumActive+NumReopened+NumDaysActive+Tot_LOC,data = output_dataset)
 output_model_testHrs<-lm(Tot_Test_Hrs ~ NumActive+NumReopened+NumDaysActive+Tot_LOC,data = output_dataset)
