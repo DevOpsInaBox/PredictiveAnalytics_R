@@ -1,6 +1,5 @@
 #install.packages("ggplot2",repos = "http://cran.us.r-project.org")
 #install.packages("gridExtra",repos = "http://cran.us.r-project.org")
-setwd("C:\\NewtDemo_Jenkins_workspace\\")
 options( warn = -1 )
 library(ggplot2)
 library(gridExtra)
